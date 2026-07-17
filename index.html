@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
@@ -32,6 +32,56 @@
     .hero::after { opacity:.9; filter:blur(5px); background:radial-gradient(ellipse 42% 60% at 14% 24%,rgba(255,221,156,.58),transparent 69%),radial-gradient(ellipse 31% 46% at 82% 72%,rgba(212,163,115,.2),transparent 74%),linear-gradient(112deg,transparent 28%,rgba(255,236,192,.18) 49%,transparent 67%); }
     .hero-dust { opacity:.72; background-size:250px 230px; }
     .photo::after { background:linear-gradient(112deg,rgba(255,232,178,.34),transparent 48%,rgba(212,163,115,.17)); mix-blend-mode:screen; }
+  
+    /* Ajuste de movimiento: lectura serena y accesible */
+    .story-frame,
+    .story-frame img {
+      animation: none;
+    }
+
+    .story-frame img {
+      transform: translateY(-6%) scale(1.02);
+    }
+
+    .photo::after {
+      animation: none;
+    }
+
+    /* En escritorio la flor entra como un gesto unico, no como un borde. */
+    .hero-sprig {
+      right: -8vw;
+      bottom: -9svh;
+      width: clamp(300px, 42vw, 470px);
+    }
+
+    @media (max-width: 520px) {
+      /* Evita el aspecto de camara lenta y reduce trabajo gr�fico en moviles. */
+      .hero-card,
+      .hero::after,
+      .photo::after {
+        animation: none;
+      }
+
+      .hero-dust {
+        display: none;
+      }
+
+      .hero-sprig {
+        right: -34vw;
+        bottom: -15svh;
+        width: 118vw;
+        animation: botanicalPrint 1.1s cubic-bezier(0.16, 1, 0.3, 1) both 3.55s;
+      }
+
+      .invites { animation-delay: .45s; }
+      .names span:first-child { animation-delay: .8s; }
+      .names .and { animation-delay: 1.45s; }
+      .names span:last-child { animation-delay: 2.05s; }
+      .rule { animation-delay: 2.85s; }
+      .date { animation-delay: 3.1s; }
+      .scroll,
+      .scroll::after { animation-delay: 4.45s; }
+    }
   </style>
 </head>
 <body>
@@ -69,3 +119,6 @@
     (()=>{const names=document.querySelectorAll('.names span');names[0].textContent='Ana';names[2].textContent='Bruno';document.querySelector('.story-frame img').alt='Ana y Bruno';document.querySelector('.story-caption').textContent='Ana & Bruno · I';document.querySelector('#gift-alias').textContent='ana.bruno.boda';document.querySelector('footer p').textContent='Ana & Bruno';document.title='Ana & Bruno — Invitación editorial';})();
   </script>
 </body></html>
+
+
+
